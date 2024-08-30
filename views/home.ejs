@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makepost.com - Welcome</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(120deg, #f2ab06, #e4fe7b);
+            overflow-x: hidden;
+            color: #333;
+        }
+        h1, h2 {
+            text-align: center;
+            color: rgb(3, 93, 113);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        h1 {
+            font-size: 3rem;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-top: 20px;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+        p {
+            font-size: 1.2rem;
+            color: white;
+            text-align: center;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 800px;
+            line-height: 1.6;
+            animation: fadeIn 4s ease-in-out forwards;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            background-color: #333;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin: 20px auto;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: fadeIn 5s ease-in-out forwards;
+        }
+        a:hover {
+            background-color: #555;
+            transform: scale(1.1);
+        }
+        .posts-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            animation: slideUp 2s ease-in-out forwards;
+        }
+        .posts-container h2 {
+            color: #ffebcd;
+            font-size: 2rem;
+        }
+        .posts-container p {
+            color: #fafafa;
+            font-size: 1.2rem;
+        }
+        .posts-container a {
+            color: #ffebcd;
+            border: 2px solid #ffebcd;
+        }
+        .posts-container a:hover {
+            background-color: #ffebcd;
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff4500;
+            transform: scale(1.1);
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Mouse Move Parallax */
+        body:hover {
+            background: linear-gradient(120deg, #df5da6, #ff7e5f);
+        }
+        .posts-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        body {
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Makepost.com</h1>
+    <h2>About our Site</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quibusdam nemo unde fuga vel soluta libero, ab nobis earum vitae!</p>
+    <a href="/posts/new">Create a post</a>
+    <div class="posts-container">
+        <h2>All the posts go here:</h2>
+        <% for(let post of posts) { %>
+            <div class="post-preview">
+                <h2><%= post.title %></h2>
+                <p><%= post.body %></p>
+                <p>Posted by <%= post.username %></p>
+                <p>Posted on <%= post.createdAt %></p>
+                <a href="/posts/<%= post.id %>">Read More</a>
+                <a href="/posts/edit/<%= post.id %>">Edit post</a>
+                <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>
